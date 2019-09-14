@@ -66,8 +66,7 @@ hr {
     width: 960px;
     margin: auto;
     margin-top: 30px;
-    border-color: #dddddd;
-    border-style: solid;
+    border: solid #dddddd;
     border-collapse: separate;
 }
 
@@ -85,6 +84,8 @@ hr {
     border-top: 8px solid #4aaaa5;
     bottom: 0px;
 }
+
+/* Contact */
 
 input[type=text], select, textarea  {
     width: 100%;
@@ -107,4 +108,36 @@ input[type=text], select, textarea  {
   
   input[type=submit]:hover {
     background-color: #4aaaa5;
+  }
+
+/* Portfolio */
+
+/* Container needed to position the button. Adjust the width as needed */
+.pImage {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .pImage img {
+    width: 200px;
+    height: 170px;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .pImage .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #4aaaa5;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+  }
+  
+  .pImage .btn:hover {
+    background-color: black;
   }
