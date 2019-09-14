@@ -38,10 +38,6 @@ div.clearfix {
     display: table;
 }
 
-.name {
-    float: left;
-}
-
 ul {
     float: right;
 }
@@ -55,7 +51,8 @@ ul {
     font-size: 30px;
     font-weight: bold;
     padding: 32.5px;
-    /* margin: 0 300px 0 239px; */
+    float: left;
+    margin: 0;
 }
 
 /* General Container */
