@@ -13,7 +13,13 @@ ul {
 
 li {
     float: right;
-    padding: 30px;
+    display: table-cell;
+    margin: 30px 0px;
+    padding: 0px 30px;
+}
+
+li.index, li.portfolio {
+    border-right: 1px solid #dddddd;
 }
 
 li a {
@@ -45,7 +51,7 @@ p {
 img {
     width: 200px;
     height: 330px;
-    padding: 15px;
+    padding-right: 15px;
     float: left;
 }
 
@@ -66,13 +72,17 @@ hr {
     width: 960px;
     margin: auto;
     margin-top: 30px;
-    border: solid #dddddd;
+    border: 1px solid #dddddd;
     border-collapse: separate;
 }
 
 .ibox {
     padding: 30px;
     background-color: white;
+}
+
+#intro {
+    padding-top: 10px;
 }
 
 .footer {
