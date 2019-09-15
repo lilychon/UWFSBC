@@ -64,6 +64,8 @@ ul {
 body {
     margin: 0px;
     padding: 0px;
+    background-image: url("../images/concrete_seamless.png"); 
+    background-repeat: repeat;
 }
 
 h1 {
@@ -74,9 +76,10 @@ h1 {
 p {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
     color: #777777;
+    line-height: 1.5em;
 }
 
-img {
+img#lily {
     width: 200px;
     height: 330px;
     padding-right: 15px;
@@ -91,8 +94,6 @@ hr {
 }
 
 .container {
-    background-image: url("../images/concrete_seamless.png"); 
-    background-repeat: repeat;
     padding: 30px;
 }
 
@@ -107,6 +108,7 @@ hr {
 .ibox {
     padding: 30px;
     background-color: white;
+    overflow: auto;
 }
 
 #intro {
@@ -116,19 +118,23 @@ hr {
 /* Footer */
 .footer {
     background-color: #666666;
-    height: 100px;
+    /* height: 100px; */
+    padding: 20px 0px 0px 0px;
+    margin: 30px 0px 0px 0px;
     border-top: 8px solid #4aaaa5;
-    vertical-align: bottom;
-    position: relative;
+    /* float: bottom; */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
 .footer p {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
     text-align: center;
     color: #dddddd;
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    top: 60%;
+    /* top: 60%; */
 }
 
 /* Contact */
@@ -156,32 +162,31 @@ input[type=text], select, textarea  {
   }
 
 /* Portfolio */
-/* Container needed to position the button. Adjust the width as needed */
-.pImage {
-    position: relative;
-    width: 50%;
-  }
-  
-  /* Make the image responsive */
-  .pImage img {
+.portfolioBox {
+    width: 70%;
+}
+
+img {
+    height: 200px;
     width: 200px;
-    height: 170px;
-  }
-  
-  /* Style the button and place it in the middle of the container/image */
-  .pImage .btn {
+    float: left;
+}
+
+.imageBox{
+    position: relative;
+    display: inline-block; /* Make the width of box same as image */
+    margin: 30px 30px 30px 0px;
+}
+.imageBox .text{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #4aaaa5;
+    z-index: 999;
+    padding: 15px 0 15px 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 70%; /* Adjust this value to move the positioned div up and down */
+    text-align: center;
+    width: 100%;
+    background: #4aaaa5;
     color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
-  }
-  
-  .pImage .btn:hover {
-    background-color: black;
-  }
+}
