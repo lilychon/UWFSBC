@@ -146,20 +146,24 @@ input[type=text], select, textarea  {
     border: 1px solid #dddddd;
     box-sizing: border-box;
     resize: vertical;
-  }
+}
 
-  input[type=submit] {
+#message  {
+    text-justify: auto;
+}
+
+input[type=submit] {
     width: 100px;
     background-color: #4aaaa5;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-  }
+}
   
-  input[type=submit]:hover {
+input[type=submit]:hover {
     background-color: #4aaaa5;
-  }
+}
 
 /* Portfolio */
 .portfolioBox {
