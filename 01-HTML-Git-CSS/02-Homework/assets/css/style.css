@@ -148,10 +148,16 @@ input[type=text], select, textarea  {
     border: 1px solid #dddddd;
     box-sizing: border-box;
     resize: vertical;
+
+}
+
+::placeholder {
+    color: #b1aeae;
 }
 
 #message  {
-    text-justify: auto;
+    height: 200px;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 input[type=submit] {
