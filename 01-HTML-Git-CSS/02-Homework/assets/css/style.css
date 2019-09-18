@@ -1,5 +1,6 @@
 /* Navigation Bar */
-.navBar {
+/* .navBar { */
+nav {
     background-color: white;
     height: 100px;
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
@@ -158,6 +159,7 @@ input[type=text], select, textarea  {
 #message  {
     height: 200px;
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 12px;
 }
 
 input[type=submit] {
