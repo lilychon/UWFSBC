@@ -1,0 +1,16 @@
+p {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.bold {
+    font-weight: bold;
+    font-family: 'Mansalva', cursive;
+}
+
+.enlarge {
+    font-size: 24px;
+}
+
+.lineheight {
+    line-height: 50px;
+}
