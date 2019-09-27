@@ -200,6 +200,7 @@ img {
 .text a {
     color: white;
     text-decoration: none;
+    font-family: 'Georgia', Times, 'Times New Roman', serif;
 }
 
 /* Media CSS Bootstrap */
