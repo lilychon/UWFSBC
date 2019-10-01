@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Favorite Bands</title>
+  </head>
+  <body>
+        <script>
+
+        var bandNames = ["bigbang", "nct", "straykidz", "winner"];
+
+        var userGuess = prompt("What's your favorite band?");
+
+        var userGuessLower = userGuess.toLowerCase();
+
+        if (bandNames.indexOf(userGuessLower) === -1) {
+            alert("That band is lame!");
+        }
+        else {
+            alert("I like them too!");
+        }
+        </script>
+
+    </body>
+</html>
