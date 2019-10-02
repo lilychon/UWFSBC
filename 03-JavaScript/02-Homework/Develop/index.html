@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type="text/css" href="../Assets/css/style.css" />
-    <script type="javascript" type="text/javascript" href="../Assets/javascript/passwordgenerator.js"></script>
     <title>Password Generator</title>
   </head>
   <body>
@@ -25,9 +24,11 @@
     ></textarea>
       <hr>
       <div class="row">
-        <button id="generate">Generate Password</button>
-        <button id="copy">Copy to Clipboard</button>
+        <!-- <button id="generate">Generate Password</button> -->
+        <input type="submit" id="generate" value="Generate Password" onclick="generatePassword(); return false;">
+        <button class="copy" type ="button" onClick="copyToClip()"> Copy to Clipboard</button>
       </div>
     </div>
+    <script src="../Assets/javascript/passwordgenerator.js"></script>
   </body>
 </html>
