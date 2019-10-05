@@ -12,9 +12,7 @@ const MAX = 128;
 
 function generatePassword() {
     rPassword = "";
-    // const pwLength = parseInt(length.value);
-    characters = specials + numbers + lowers + uppers;
-    
+    // const pwLength = parseInt(length.value);    
     while (length !== null) {
         length = prompt("Choose a password length between " + MIN + " and " + MAX);
         if (isNaN(length)) {
@@ -53,11 +51,13 @@ function generatePassword() {
         rPassword += uppers;
     }
 
+    characters = specials + numbers + lowers + uppers;
+
     for (var i = 0; i < length; i++) {
-        rPassword += characters.charAt(Math.floor(math.random() * Math.floor(characters.length - 1)));
+        rPassword += characters.charAt(Math.floor(Math.random() * Math.floor(characters.length - 1)));
     }
     
-
+    console.log(rPassword);
     
     passBox.innerHTML = rPassword;
 }
