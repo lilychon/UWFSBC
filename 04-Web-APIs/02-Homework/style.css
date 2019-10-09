@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-emphasis: bold;
+    margin: auto;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#viewH {
+    float: left;
+    color: #4d00a5;
+}
+
+#viewT {
+    float: right;
+}
+
+.container {
+    margin: auto;
+    width: 60%;
+    padding: 10%;
+}
+
+#start {
+    display: block;
+    margin: auto;
+    background-color: #4d00a5;
+    color: white;
+    border-radius: 5px;
+    border: 1px #4d00a5 solid;
+}
