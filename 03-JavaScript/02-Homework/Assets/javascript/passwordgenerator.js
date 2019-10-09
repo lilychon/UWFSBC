@@ -5,16 +5,13 @@ var lowers = 'abcdefghijklmnopqrstuvwxyz';
 var uppers = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var passBox = document.getElementById("password");
 var rPassword = '';
-var characters = '';
 
 const MIN = 8;
 const MAX = 128;
 
 function generatePassword() {
     rPassword = "";
-    // const pwLength = parseInt(length.value);
-    characters = specials + numbers + lowers + uppers;
-    
+    // const pwLength = parseInt(length.value);    
     while (length !== null) {
         length = prompt("Choose a password length between " + MIN + " and " + MAX);
         if (isNaN(length)) {
@@ -23,10 +20,14 @@ function generatePassword() {
         else if (length < MIN || length > MAX) {
             alertThis("Please choose a number between " + MIN + " and " + MAX);
         } 
+        else if (length === "") {
+            alertThis("Please choose a number between " + MIN + " and " + MAX);
+        }
         else {
             break;
         }
     }
+
     alertThis("Please choose at least 1 Character type.")
     var special = confirm("Would you like Special characters (!#$%&'()*+,-./:;<=>?@[\]^_`{|}~) in your random password?");
     var number = confirm("Would you like Numeric Characters (0123456789) in your random password?");
@@ -53,15 +54,14 @@ function generatePassword() {
         rPassword += uppers;
     }
 
+    var randomP = "";
+
     for (var i = 0; i < length; i++) {
-        rPassword += characters.charAt(Math.floor(math.random() * Math.floor(characters.length - 1)));
+        randomP += rPassword.charAt(Math.floor(Math.random() * Math.floor(rPassword.length - 1)));
     }
     
-
-    
-    passBox.innerHTML = rPassword;
+    passBox.innerHTML = randomP;
 }
-
 
 function alertThis(message) {
     alert(message);
