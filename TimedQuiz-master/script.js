@@ -10,9 +10,10 @@ let timerTab = document.querySelector("#timers");
 // let answersListEl = document.querySelector("#answer-list")
 
 // set global variables - how do we move these into localized
-var test = 0;
+var test = false;
 var score = 0;
 var quiz = {};
+var quizType = "";
 
 var gameDuration = 0;
 var gameSecElapsed = 0;
@@ -41,17 +42,33 @@ function init() {
   instructions.setAttribute("id", "instructions");
   instructions.textContent = " You will have 5 seconds to answer each question. If you answer correctly you will score points. The quicker you answer the more points you will score. If you score incorrectly you will not lose points, but you will be penalized time."; 
 
+  // adding more question - this should move into loop or function
   // creates button to start the game
-  let startQuiz = document.createElement("button");
-  startQuiz.setAttribute("id", "startQuiz");
-  startQuiz.setAttribute("class", "btn btn-secondary");
-  startQuiz.textContent= "Start Quiz";
+  let startJsQuiz = document.createElement("button");
+  startJsQuiz.setAttribute("id", "startJSQuiz");
+  startJsQuiz.setAttribute("class", "btn btn-secondary");
+  startJsQuiz.textContent= "Start Javascript Quiz";
+
+  // creates button to start the game
+  let startFoodQuiz = document.createElement("button");
+  startFoodQuiz.setAttribute("id", "startFoodQuiz");
+  startFoodQuiz.setAttribute("class", "btn btn-secondary");
+  startFoodQuiz.textContent= "Start Food Quiz";
 
   mainEl.appendChild(heading);
   mainEl.appendChild(instructions);
-  mainEl.appendChild(startQuiz);
+  mainEl.appendChild(startJsQuiz);
+  mainEl.appendChild(startFoodQuiz);
 
-  startQuiz.addEventListener("click", playQuiz);
+  startJsQuiz.addEventListener("click", function () {
+    quizType = "Java Script";
+    playQuiz(jsQuestions);
+  });
+
+  startFoodQuiz.addEventListener("click", function () {
+    quizType = "Food";
+    playQuiz(foodQuestions);
+  });
 }
 
 // function to clear details element of all children
@@ -60,6 +77,7 @@ function clearDetails() {
 }
 
 function reset() {
+  quizType = "";
   score = 0;
 
   gameDuration = 0;
@@ -72,11 +90,11 @@ function reset() {
 }
 
 //start game
-function playQuiz() {
+function playQuiz(questionSet) {
   if (test) { console.log("--- playQuiz ---"); }
   // select quiz randomize questions
   
-  quiz = setUpQuestions(questions);
+  quiz = setUpQuestions(questionSet);
 
   // displays timers
   timerTab.setAttribute("style", "visibility: visible;");
@@ -95,8 +113,7 @@ function playQuiz() {
 // function to get random question out of array
 function setUpQuestions(arr) {
   if (test) {console.log("--- setUpQuestions ---");}
-  //TODO get different topic
-  // TODO randomize questions
+
   let ranQuest = [];
 
   for (let i=0; i<arr.length; i++) {
@@ -147,12 +164,13 @@ function presentQuestion() {
     let listChoice = document.createElement("li");
     // adds data value
     listChoice.setAttribute("choice-value", curQuestion.choices[i]);
+    listChoice.setAttribute("id","questionNum-"+i);
     listChoice.textContent = curQuestion.choices[i];
     //add choice to page
     choiceBox.appendChild(listChoice)
   }
 
-  // if (test) { console.log("cur", curQuestion);}
+  if (test) { console.log("cur", curQuestion);}
 
   // get answer from user
   // using the anymous function delays the invocation of the scoreAnswer
@@ -168,23 +186,54 @@ function scoreAnswer(cur) {
   var e = event.target;
   if ( e.matches("li")) {
     let selectedItem = e.textContent;
-    // if (selectedItemm === quiz.)
     // if (test) { console.log("check quiz " + quiz.length); }
-    // if (test) { console.log("selectedItem quiz " + selectedItem); }
+    if (test) { console.log("selectedItem quiz " + selectedItem); }
     // if (test) { console.log("selectedItem cur " , cur.answer); }
     if ( selectedItem === cur.answer ) {
       // if (test) { console.log("correct answer");}
       score += questionDuration - questionSecElapsed;
-      //TODO display correct
       //TODO music 
     } else {
-      // if (test) { console.log("wrong answer");}
+      if (test) { console.log("wrong answer");}
       //penelty for being wrong
       gameDuration -= 10;
-      //TODO let user know they suck
     }
-    presentQuestion();
+  if (test) { console.log("sselected ",selectedItem);}
+    showAnswers(cur);
+    // presentQuestion();
   }
+}
+
+// TODO incomplete does not disply the correct color!!!! arghh
+function showAnswers(cur) {
+  if (test) { console.log("--- showAnswer ---"); }
+  // if (test) { console.log("sa length",cur.choices.length);}
+  if (test) { console.log("sa qanda",cur);}
+  if (test) { console.log("sselected ",selectedItem);}
+
+
+  for (let i=0; i<cur.choices.length; i++) {
+    if (test) { console.log("sa in for ",i);}
+
+    let questid = "#questionNum-" + i;
+    // if (test) { console.log("sa qn", questid );}
+    let questrow = document.querySelector(questid);
+
+    // if (test) { console.log("questrow",questrow);}
+
+    if (test) { console.log("saf selected" + selectedItem + "<");}
+    if (test) { console.log("saf color test >" +  cur.choices[i] +"<");}
+
+    if ( cur.choices[i] !== cur.answer ) {
+      if (test) { console.log("color test flase");}
+      questrow.setAttribute("style","background-color: red");
+    } else {
+      if (test) { console.log("color test true");}
+      questrow.setAttribute("style","background-color: green");
+    }
+  }
+  // pause so user can see results
+  setTimeout(presentQuestion,500);
 }
 
 // function to set time for game timer
@@ -197,7 +246,7 @@ function setGameTime() {
 
 
 function renderTime() {
-  if (test) { console.log(" --- renderTime --- "); }
+  // if (test) { console.log(" --- renderTime --- "); }
   // if (test) { console.log("gameSecElapsed " + gameSecElapsed); }
   // if (test) { console.log("gameDuration " + gameDuration); }
   // if (test) { console.log("questionDuration " + questionDuration); }
@@ -287,7 +336,7 @@ function endOfGame() {
     if ( initialsInput.value.length === 3 ) { 
 
       //create object for this score
-      let thisScore = [ { name: initialsInput.value, score: score } ]; 
+      let thisScore = [ { type: quizType, name: initialsInput.value, score: score } ]; 
 
       //get highscores from memory
       let storedScores = JSON.parse(localStorage.getItem("highScores")); 
@@ -311,28 +360,39 @@ function highScores() {
 
   timerTab.setAttribute("style", "visibility: hidden;");
 
+  //get scores from storage
   let storedScores = JSON.parse(localStorage.getItem("highScores")); 
 
-  let heading = document.createElement("p");
+  // draw heading
+  let heading = document.createElement("h2");
   heading.setAttribute("id", "main-heading");
-  heading.textContent = "High Score Hall of Fame";
+  heading.textContent = "Top 5 High Score Hall of Fame";
 
   mainEl.appendChild(heading);
 
   // Render a new li for each score
   // TODO check for this error 
   if ( storedScores !== null ) {
-    for (var i = 0; i < storedScores.length; i++) {
+    // sort scores
+    storedScores.sort((a,b) => (a.score < b.score) ? 1: -1);
+
+    // sets the number of scores to display to 5 or the number of games played. Which ever is less
+    let numScores2Display = 5;
+    if ( storedScores.length < 5 ) { 
+      numScores2Display = storedScores.length; 
+    }
+
+    for (var i = 0; i < numScores2Display; i++) {
       var s = storedScores[i];
 
       var p = document.createElement("p");
-      p.textContent = s.name + " " + s.score;
+      p.textContent = s.name + " " + s.score + " ( " + s.type + " )";
       mainEl.appendChild(p);
     }
   } else {
-      var p = document.createElement("p");
-      p.textContent =  "Your Initials Here!"
-      mainEl.appendChild(p);
+    var p = document.createElement("p");
+    p.textContent =  "Your Initials Here!"
+    mainEl.appendChild(p);
   }
 
 

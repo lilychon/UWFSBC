@@ -12,6 +12,10 @@ p {
     text-align: center;
 }
 
+.container {
+    width: 100%;
+}
+
 #viewH {
     float: left;
     color: #4d00a5;
@@ -21,15 +25,24 @@ p {
     float: right;
 }
 
-.container {
+#content {
     margin: auto;
-    width: 60%;
-    padding: 10%;
+    /* width: 60%; */
+    padding-top: 10%;
 }
 
-#start {
+button {
     display: block;
     margin: auto;
+    background-color: #4d00a5;
+    color: white;
+    border-radius: 5px;
+    border: 1px #4d00a5 solid;
+}
+
+#buttons {
+    display: block;
+    margin: 10px 0 10px 0;
     background-color: #4d00a5;
     color: white;
     border-radius: 5px;
