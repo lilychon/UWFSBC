@@ -59,6 +59,14 @@ button {
     font-style: italic;
 }
 
+label {
+    margin-right: 10px;
+}
+
+.submitBtn {
+    float: left;
+}
+
 *,
 *::before,
 *::after {
