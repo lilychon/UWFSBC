@@ -49,25 +49,13 @@ function init() {
   startJsQuiz.setAttribute("class", "btn btn-secondary");
   startJsQuiz.textContent= "Start Javascript Quiz";
 
-  // creates button to start the game
-  let startFoodQuiz = document.createElement("button");
-  startFoodQuiz.setAttribute("id", "startFoodQuiz");
-  startFoodQuiz.setAttribute("class", "btn btn-secondary");
-  startFoodQuiz.textContent= "Start Food Quiz";
-
   mainEl.appendChild(heading);
   mainEl.appendChild(instructions);
   mainEl.appendChild(startJsQuiz);
-  mainEl.appendChild(startFoodQuiz);
 
   startJsQuiz.addEventListener("click", function () {
     quizType = "Java Script";
     playQuiz(jsQuestions);
-  });
-
-  startFoodQuiz.addEventListener("click", function () {
-    quizType = "Food";
-    playQuiz(foodQuestions);
   });
 }
 

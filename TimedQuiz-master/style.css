@@ -1,17 +1,14 @@
 body {
-  /* image for background */
-  background-image: url('./images/low_contrast_linen.png');
-
-  /* font parameters */
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1em;
-
-  /* added padding to prevent navbar overlap. (100 based on browser inpector of size) */
-  padding-top: 90px;
 }
 
 button {
-  margin: 1em;
+  display: block;
+  margin: auto;
+  background-color: #4d00a5;
+  color: white;
+  border-radius: 5px;
+  border: 1px #4d00a5 solid;
 }
 
 .navbar {

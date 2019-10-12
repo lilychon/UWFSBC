@@ -8,8 +8,13 @@ h1 {
     text-align: center;
 }
 
-p {
+h3 {
     text-align: center;
+    font-size: 14px;
+}
+
+p {
+    font-style: italic;
 }
 
 .container {
@@ -47,4 +52,15 @@ button {
     color: white;
     border-radius: 5px;
     border: 1px #4d00a5 solid;
+}
+
+#rorw {
+    float: left;
+    font-style: italic;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: none;
 }
