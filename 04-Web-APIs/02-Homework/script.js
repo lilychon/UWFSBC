@@ -172,7 +172,7 @@ function showHighScores() {
       var s = highScore[i];
 
       var p = document.createElement("p");
-      // p.textContent = s.name + " " + s.score + " ( " + s.type + " )";
+      p.textContent = initialsInput + " " + score + " ( " + s.type + " )";
       p.textContent = "SCORE HERE"
       content.appendChild(p);
     }
