@@ -4,11 +4,13 @@ body {
   line-height: 1;
 }
 
-textarea{
+textarea {
   background: transparent;
   border: none;
   resize: none;
   color: #000000;
+  width: 900px;
+  height: 100%;
   border-left: 1px solid black;
   padding: 10px;
 }
@@ -63,6 +65,7 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
+  padding: 30px;
 }
 
 .saveBtn i:hover {
@@ -71,5 +74,13 @@ textarea{
 }
 
 .container {
-  width: 100%
+  width: 100%;
+  margin: auto;
+}
+
+.time {
+  float: left;
+  padding: 20px 10px 20px 20px;
+  width: 70px;
+  border-top: 1px dashed gray;
 }

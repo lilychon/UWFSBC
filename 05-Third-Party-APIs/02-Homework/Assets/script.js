@@ -1,54 +1,62 @@
-// function showHighScores() {
-//     content.innerHTML = "";
+$(document).ready(function () {
+    const currentDate = moment().format("dddd, MMMM Do");
 
-//     var highScore = JSON.parse(localStorage.getItem("highScore"));
+  $("#currentDay").html(currentDate);
+})
 
-//     var heading = document.createElement("h2");
-//     heading.setAttribute("id", "main-heading");
-//     heading.textContent = "Top 5 High Scores";
+var times = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+const currentTime = moment().format("H");
 
-//     content.appendChild(heading);
+function buildRows() {
 
+    var startTime = 8;
 
-//     if (highScore !== null) {
-//         // highScore.sort((a,b) => (a.score < b.score) ? 1: -1);
+    for (var i = 0; i < times.length; i++) {
 
-//         var numScores2Display = 5;
-//         if (highScore.length < 5) {
-//             numScores2Display = highScore.length;
-//         }
+        var row = $("<div class='row'>");
 
-//         for (var i = 0; i < numScores2Display; i++) {
-//             var s = highScore[i];
+        var time = $("<div>");
+        time.attr("data-timeOption", times[i]);
+        time.addClass("time");
+        time.text(times[i]);
+        var timeSpan = $("<span>");
+        timeSpan.append(time);
 
-//             var p = document.createElement("p");
-//             p.textContent = initialsInput + " " + score + " ( " + s.type + " )";
-//             p.textContent = "SCORE HERE"
-//             content.appendChild(p);
-//         }
-//     } else {
-//         var p = document.createElement("p");
-//         p.textContent = "Your Initials Here!"
-//         content.appendChild(p);
-//     }
-// }
+        var textArea = $("<textarea/>");
+        textArea.attr("id",startTime++);
+        textArea.addClass("userInput");
+        var textSpan = $("<span>");
+        // userInput.addClass("col-md")
+        textSpan.append(textArea);
 
-// var boxes = 9;
+        if (startTime === currentTime) {
+            textArea.addClass("present")
+        } else if (startTime > currentTime) {
+            textArea.addClass("future")
+        } else {
+            textArea.addClass("past")
+        }
 
-// function myFunction() {
+        var saveBtn = $("<button>");
+        saveBtn.addClass("fas fa-save saveBtn");
 
-//     for (var i = 0; i < boxes; i++) {
-//         days();
-//     }
-// }
+        row.append(timeSpan, textSpan, saveBtn);
 
-// function days() {
-//     var x = document.createElement("INPUT");
-//         x.setAttribute("type", "text");
-//         x.setAttribute("value", "Hello World!");
-//         document.body.appendChild(x);
-// }
+        $(".container").append(row);
 
-// myFunction();
+        
+    }
+    $(".saveBtn").on("click",
+      function (event) {
+          event.preventDefault();
+          console.log("thisran");
+          var aa = textArea.value;
+          console.log(aa);
 
+    localStorage.setItem("userInput", aa);
+    renderLastRegistered();    
 
+})
+}
+
+buildRows();

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" onblur="getExpireDate(this);" class="CCCRexpDate" name="cccr_exp" id="CCCR_X1" />
+    <input type="text" onblur="getExpireDate(this);" class="CCCRexpDate" name="cccr_exp" id="CCCR_X2" />
+    <input type="text" onblur="getExpireDate(this);" class="CCCRexpDate" name="cccr_exp" id="CCCR_X3" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+
+    <script>
+        function getExpireDate(ele) {
+            var i = null;
+            for (i = 0; cccr_mems.length > i; i++) {
+
+
+                if (cccr_mems[i].Name == ele.value) {
+
+                    var exDate = moment(cccr_mems[i].cccrEXP, 'YYYY.MM.DD');
+
+                    if (moment().isAfter(exDate)) {
+                        //$(ele).css('color', "#A3005B");
+                        $(ele).css('background', "#A3005B");
+                    } else {
+                        $(ele).css('background', "#275052");
+                        //$(ele).css('color', "#275052");
+                    }
+
+                    return cccr_mems[i].cccrEXP;
+                }
+            }
+        }
+        return '';
+    </script>
+
+</body>
+
+</html>
