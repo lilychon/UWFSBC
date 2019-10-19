@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     function buildRows() {
 
-        var startTime = 9;
+        var startTime = 8;
 
         for (var i = 0; i < times.length; i++) {
 
