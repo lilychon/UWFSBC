@@ -4,13 +4,13 @@ $(document).ready(function () {
     $("#currentDay").html(currentDate);
 
 
-    var times = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+    var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
     const currentTime = moment().format("H");
     var schedule = {}
 
     function buildRows() {
 
-        var startTime = 8;
+        var startTime = 9;
 
         for (var i = 0; i < times.length; i++) {
 
@@ -18,18 +18,13 @@ $(document).ready(function () {
 
             var time = $("<div>");
             time.attr("data-timeOption", times[i]);
-            time.addClass("time");
             time.text(times[i]);
-            var timeSpan = $("<span>");
-            timeSpan.append(time);
+            time.addClass("col-md-1 hour");
 
             var textArea = $("<textarea/>");
             textArea.attr("id", startTime++);
-            textArea.addClass("userInput");
-            var textSpan = $("<span>");
-            textSpan.addClass("row");
-            // userInput.addClass("col-md")
-            textSpan.append(textArea);
+            textArea.addClass("userInput col-md row");
+
 
             if (startTime == currentTime) {
                 textArea.addClass("present")
@@ -40,22 +35,19 @@ $(document).ready(function () {
             }
 
             var saveBtn = $("<button>");
-            saveBtn.addClass("fas fa-save saveBtn");
+            saveBtn.addClass("col-md-1 fas fa-save saveBtn");
 
-            row.append(timeSpan, textSpan, saveBtn);
+            row.append(time, textArea, saveBtn);
 
             $(".container").append(row);
 
-
         }
 
-        schedule = JSON.parse(localStorage.getItem("getvalue"))
+        schedule = JSON.parse(localStorage.getItem("getValue"))
         console.log(schedule)
-        // schedule = {"9":"whatever", "12":"hhhh"}
         for (key in schedule) {
             console.log(key, schedule[key])
             $("#" + key).text(schedule[key])
-            // jquery to update the textarea related with the hour
         }
 
         $(".saveBtn").on("click",
@@ -65,15 +57,14 @@ $(document).ready(function () {
                 var userInput = $(this).parent().find(".userInput").val();
                 var hour = $(this).parent().find(".userInput").attr("id")
                 console.log(hour, userInput);
-                var scheduleTemp = JSON.parse(localStorage.getItem("getvalue"))
+                var scheduleTemp = JSON.parse(localStorage.getItem("getValue"))
                 if (scheduleTemp === null) {
                     scheduleTemp = {}
                 }
                 scheduleTemp[hour] = userInput
-                localStorage.setItem("getvalue", JSON.stringify(scheduleTemp));
+                localStorage.setItem("getValue", JSON.stringify(scheduleTemp));
             })
     }
-
 
     buildRows();
 
