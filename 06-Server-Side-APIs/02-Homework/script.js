@@ -1,28 +1,38 @@
 var APIKey = "166a433c57516f51dfab1f7edaed8413";
 
 
-$(".searchBtn").on("click", function(event) {
+$(".searchBtn").on("click", function (event) {
     event.preventDefault();
     var city = $("#cityInput").val();
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + city + "&appid=" + APIKey;
 
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
-        
+
         const currentDate = moment().format("M/D/YYYY");
 
-        $(".city").html("<h2>" + response.name + " (" + currentDate + ")" + "</h2>");
-        $(".temp").text("Temperature: " + response.main.temp);
-        $(".humidity").text("Humidity: " + response.main.humidity);
-        $(".wind").text("Wind Speed: " + response.wind.speed);
-        $(".uvIndex").text("UV Index: " + response.wind.speed);
+        $(".city").html("<h2>" + response.city.name + " (" + currentDate + ")" + "</h2>");
+        $(".temp").text("Temperature: " + response.list[0].main.temp.toFixed(1) + " °F");
+        $(".humidity").text("Humidity: " + response.list[0].main.humidity + "%");
+        $(".wind").text("Wind Speed: " + response.list[0].wind.speed.toFixed(1) + " MPH");
+        $(".uvIndex").html("UV Index: " + "<p>" + response.list[0].wind.speed + "</p>");
 
-        $(".cityHistory").html("<button>" + response.name + "</button>");
+        var cityHistory = $("<button>" + response.city.name + "</button>");
+        cityHistory.addClass("btn btn-light w-100");
+        $(".cityHistory").append(cityHistory);
+
+        for (var i = 1; i < 6; i++) {
+            const date = moment().add(i, 'days').format("M/D/YYYY");
+            $("<div>", {
+                html: "<h3>" + date + "</h3>" + "Temp: " + response.list[i].main.temp.toFixed(1) + " °F" + "<br>" + "Humidity: " + response.list[i].main.humidity.toFixed(1) + "%",
+                id: "fiveDayBox",
+                appendTo: ".fiveDay"
+            })
+        }
     })
-
 })
 

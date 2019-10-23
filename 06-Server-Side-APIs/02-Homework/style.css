@@ -36,3 +36,40 @@ nav {
     border: 1px solid #cccccc;
     border-radius: 5px;
 }
+
+.cityHistory {
+    margin: 20px;
+}
+
+.btn {
+    background-color: white;
+    border: 1px solid #cccccc;
+    border-radius: 0px;
+    text-align: left;
+    margin-left: -20px;
+    margin-top: -2px;
+    width: 100%;
+}
+
+p {
+    background-color: rgb(211, 0, 0);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+}
+
+#fiveDayBox {
+    background-color: #017bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 20px 0 0;
+    display: inline-block;
+    width: 200px;
+}
+
+.fiveDay {
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
