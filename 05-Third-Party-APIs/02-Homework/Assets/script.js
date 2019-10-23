@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#currentDay").html(currentDate);
 
 
-    var times = ["9AM", "10AM", "11AM", "12AM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+    var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
     const currentTime = moment().format("H");
     var schedule = {}
 
@@ -18,6 +18,7 @@ $(document).ready(function () {
 
             var time = $("<div>");
             time.attr("data-timeOption", times[i]);
+<<<<<<< HEAD
             // time.addClass("time");
             time.text(times[i]);
             var timeSpan = $("<span>");
@@ -31,6 +32,15 @@ $(document).ready(function () {
             textSpan.addClass("row col-md-10");
             // userInput.addClass("col-md")
             textSpan.append(textArea);
+=======
+            time.text(times[i]);
+            time.addClass("col-md-1 hour");
+
+            var textArea = $("<textarea/>");
+            textArea.attr("id", startTime++);
+            textArea.addClass("userInput col-md row");
+
+>>>>>>> f5497b9eb9bf2ac0728ca619ace81079bae9fb58
 
             if (startTime == currentTime) {
                 textArea.addClass("present")
@@ -41,12 +51,15 @@ $(document).ready(function () {
             }
 
             var saveBtn = $("<button>");
+<<<<<<< HEAD
             saveBtn.addClass("fas fa-save col-md-1 saveBtn");
+=======
+            saveBtn.addClass("col-md-1 fas fa-save saveBtn");
+>>>>>>> f5497b9eb9bf2ac0728ca619ace81079bae9fb58
 
-            row.append(timeSpan, textSpan, saveBtn);
+            row.append(time, textArea, saveBtn);
 
             $(".container").append(row);
-
 
         }
 
@@ -72,7 +85,6 @@ $(document).ready(function () {
                 localStorage.setItem("getValue", JSON.stringify(scheduleTemp));
             })
     }
-
 
     buildRows();
 
