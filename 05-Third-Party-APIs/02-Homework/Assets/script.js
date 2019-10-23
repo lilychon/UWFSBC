@@ -18,16 +18,17 @@ $(document).ready(function () {
 
             var time = $("<div>");
             time.attr("data-timeOption", times[i]);
-            time.addClass("time");
+            // time.addClass("time");
             time.text(times[i]);
             var timeSpan = $("<span>");
+            timeSpan.addClass("col-md-1 time");
             timeSpan.append(time);
 
             var textArea = $("<textarea/>");
             textArea.attr("id", startTime++);
             textArea.addClass("userInput");
             var textSpan = $("<span>");
-            textSpan.addClass("row");
+            textSpan.addClass("row col-md-10");
             // userInput.addClass("col-md")
             textSpan.append(textArea);
 
@@ -40,7 +41,7 @@ $(document).ready(function () {
             }
 
             var saveBtn = $("<button>");
-            saveBtn.addClass("fas fa-save saveBtn");
+            saveBtn.addClass("fas fa-save col-md-1 saveBtn");
 
             row.append(timeSpan, textSpan, saveBtn);
 
@@ -49,13 +50,11 @@ $(document).ready(function () {
 
         }
 
-        schedule = JSON.parse(localStorage.getItem("getvalue"))
+        schedule = JSON.parse(localStorage.getItem("getValue"))
         console.log(schedule)
-        // schedule = {"9":"whatever", "12":"hhhh"}
         for (key in schedule) {
             console.log(key, schedule[key])
             $("#" + key).text(schedule[key])
-            // jquery to update the textarea related with the hour
         }
 
         $(".saveBtn").on("click",
@@ -65,12 +64,12 @@ $(document).ready(function () {
                 var userInput = $(this).parent().find(".userInput").val();
                 var hour = $(this).parent().find(".userInput").attr("id")
                 console.log(hour, userInput);
-                var scheduleTemp = JSON.parse(localStorage.getItem("getvalue"))
+                var scheduleTemp = JSON.parse(localStorage.getItem("getValue"))
                 if (scheduleTemp === null) {
                     scheduleTemp = {}
                 }
                 scheduleTemp[hour] = userInput
-                localStorage.setItem("getvalue", JSON.stringify(scheduleTemp));
+                localStorage.setItem("getValue", JSON.stringify(scheduleTemp));
             })
     }
 

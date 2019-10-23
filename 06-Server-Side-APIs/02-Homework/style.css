@@ -1,0 +1,38 @@
+h1 {
+    color: white;
+    text-align: center;
+    margin: 10px;
+}
+
+body {
+    color: #494949;
+}
+
+nav {
+    width: 100%;
+}
+
+.searchBtn {
+    background-color: #017bff;
+    border-radius: 5px;
+    color: white;
+    padding: 11px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 30%;
+    position: fixed;
+}
+
+.col-md {
+    margin-left: 30%;
+}
+
+.weatherInfo {
+    padding: 20px;
+    margin: 30px 10px 30px 0;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
