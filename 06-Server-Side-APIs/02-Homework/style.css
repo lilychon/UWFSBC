@@ -4,6 +4,19 @@ h1 {
     margin: 10px;
 }
 
+h2 {
+    display: inline-block;
+}
+
+h4 {
+    background-color: rgb(211, 0, 0);
+    color: white;
+    padding: 7px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+}
+
 body {
     color: #494949;
 }
@@ -16,7 +29,7 @@ nav {
     background-color: #017bff;
     border-radius: 5px;
     color: white;
-    padding: 11px;
+    padding: 13px;
 }
 
 .sidebar {
@@ -51,14 +64,6 @@ nav {
     width: 100%;
 }
 
-p {
-    background-color: rgb(211, 0, 0);
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    display: inline;
-}
-
 #fiveDayBox {
     background-color: #017bff;
     color: white;
@@ -72,4 +77,22 @@ p {
 .fiveDay {
     margin-bottom: 10px;
     padding-top: 10px;
+}
+
+p {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+i {
+    display: inline-block;
+}
+
+.weatherIcon {
+    font-size: 30px;
+    padding-left: 10px;
+}
+
+.uvIndex {
+    padding: 5px;
 }
