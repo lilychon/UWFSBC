@@ -96,3 +96,7 @@ i {
 .uvIndex {
     padding: 5px;
 }
+
+#cityIcon {
+    display: inline-block;
+}

@@ -7,6 +7,35 @@ $(".searchBtn").on("click", function (event) {
     displayWeatherInfo();
 })
 
+function buildSOmething(response) {
+   
+
+
+
+for (var i = 1; i < 6; i++) {
+    const date = moment().add(i, 'days').format("M/D/YYYY");
+    // $("<div>", {
+    //     html: "<h3>" + date + "<br>" + "</h3>" + "Temp: " + response.list[i].main.temp.toFixed(1) + " °F" + "<br>" + "Humidity: " + response.list[i].main.humidity.toFixed(1) + "%",
+    //     id: "fiveDayBox",
+    //     appendTo: ".fiveDay"
+    // })
+    var fiveDayDiv = $("<div id='fiveDayBox'>");
+    var fiveDayDivDate = $("<h3>");
+    fiveDayDivDate.html(date);
+    var fiveDayDivIcon = $("<div>");
+    fiveDayDivIcon.addClass("icon");
+    // append the if else statement here
+    var fiveDayDivTemp = $("<span>");
+    fiveDayDivTemp.html("Temp: " + response.list[i].main.temp.toFixed(1) + " °F" + "<br>");
+    var fiveDayDivHumidity = $("<span>");
+    fiveDayDivHumidity.html("Humidity: " + response.list[i].main.humidity.toFixed(1) + "%")
+
+    fiveDayDiv.append(fiveDayDivDate, fiveDayDivIcon, fiveDayDivTemp, fiveDayDivHumidity);
+
+    $(".fiveDay").append(fiveDayDiv);
+}
+}
+
 function displayWeatherInfo() {
     $(".fiveDay").empty();
     var city = $("#cityInput").val();
@@ -18,6 +47,7 @@ function displayWeatherInfo() {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        buildSOmething(response)
 
         $.ajax({
             url: "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + response.city.coord.lat + "&lon=" + response.city.coord.lon
@@ -31,44 +61,6 @@ function displayWeatherInfo() {
 
             $(".city").html("<h2>" + response.city.name + " (" + currentDate + ")" + "</h2>");
 
-            // $(".city").appendTo(weather());
-
-            if (response.list[0].weather[0].main === "Clear") {
-                $("<i>", {
-                    class: "fas fa-sun weatherIcon",
-                    appendTo: ".city"
-                    
-                })
-            }
-            else if (response.list[0].weather[0].main === "Clouds") {
-                $("<i>", {
-                    class: "fas fa-cloud weatherIcon",
-                    appendTo: ".city"
-                    
-                })
-            }
-            else if (response.list[0].weather[0].main === "Snow") {
-                $("<i>", {
-                    class: "fas fa-snowflake weatherIcon",
-                    appendTo: ".city"
-                    
-                })
-            }
-            else if (response.list[0].weather[0].main === "Drizzle") {
-                $("<i>", {
-                    class: "fas fa-cloud-rain weatherIcon",
-                    appendTo: ".city"
-                    
-                })
-            }
-            else if (response.list[0].weather[0].main === "Rain") {
-                $("<i>", {
-                    class: "fas fa-cloud-showers-heavy weatherIcon",
-                    appendTo: ".city"
-                    
-                })
-            }
-
             $(".temp").html("<p>" + "Temperature: " + response.list[0].main.temp.toFixed(1) + " °F" + "</p>");
             $(".humidity").html("<p>" + "Humidity: " + response.list[0].main.humidity + "%" + "</p>");
             $(".wind").html("<p>" + "Wind Speed: " + response.list[0].wind.speed.toFixed(1) + " MPH" + "</p>");
@@ -79,50 +71,54 @@ function displayWeatherInfo() {
             $(".cityHistory").append(cityHistory);
 
 
-            for (var i = 1; i < 6; i++) {
-                const date = moment().add(i, 'days').format("M/D/YYYY");
-                $("<div>", {
-                    html: "<h3>" + date + "<br>" + "</h3>" + "Temp: " + response.list[i].main.temp.toFixed(1) + " °F" + "<br>" + "Humidity: " + response.list[i].main.humidity.toFixed(1) + "%",
-                    id: "fiveDayBox",
-                    appendTo: ".fiveDay"
-                })
-            }
+          
             // cityHistory.onclick("click", function(history) {
             //     history.preventDefault();
             //     event(); 
             // })
 
-            // function weather() {
-            //     if (response.list[0].weather[0].main === "Clear") {
-            //         $("<i>", {
-            //             class: "fas fa-sun weatherIcon"
-            //         })
-            //     }
-            //     else if (response.list[0].weather[0].main === "Clouds") {
-            //         $("<i>", {
-            //             class: "fas fa-cloud weatherIcon"
-            //         })
-            //     }
-            //     else if (response.list[0].weather[0].main === "Snow") {
-            //         $("<i>", {
-            //             class: "fas fa-snowflake weatherIcon"
-            //         })
-            //     }
-            //     else if (response.list[0].weather[0].main === "Drizzle") {
-            //         $("<i>", {
-            //             class: "fas fa-cloud-rain weatherIcon"
-            //         })
-            //     }
-            //     else if (response.list[0].weather[0].main === "Rain") {
-            //         $("<i>", {
-            //             class: "fas fa-cloud-showers-heavy weatherIcon"
-            //         })
-            //     }
-            // }
+            var weatherIcon = response.list[0].weather[0].main;
+
+            if (weatherIcon === "Clear") {
+                $("<i>", {
+                    class: "fas fa-sun weatherIcon",
+                    appendTo: ".icon"
+
+                })
+            }
+            else if (weatherIcon === "Clouds") {
+                $("<i>", {
+                    class: "fas fa-cloud weatherIcon",
+                    appendTo: ".icon"
+
+                })
+            }
+            else if (weatherIcon === "Snow") {
+                $("<i>", {
+                    class: "fas fa-snowflake weatherIcon",
+                    appendTo: ".icon"
+
+                })
+            }
+            else if (weatherIcon === "Drizzle") {
+                $("<i>", {
+                    class: "fas fa-cloud-rain weatherIcon",
+                    appendTo: ".icon"
+
+                })
+            }
+            else if (weatherIcon === "Rain") {
+                $("<i>", {
+                    class: "fas fa-cloud-showers-heavy weatherIcon",
+                    appendTo: ".icon"
+
+                })
+
+            }
 
         })
     })
 }
-
+buildSOmething();
 $(document).on("click", ".cityBtn", displayWeatherInfo);
 
