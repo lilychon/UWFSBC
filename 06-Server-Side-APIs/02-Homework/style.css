@@ -8,6 +8,10 @@ h2 {
     display: inline-block;
 }
 
+h3 {
+    margin: 10px;
+}
+
 h4 {
     background-color: rgb(211, 0, 0);
     color: white;
@@ -23,6 +27,7 @@ body {
 
 nav {
     width: 100%;
+    position: fixed;
 }
 
 .searchBtn {
@@ -91,6 +96,8 @@ i {
 .weatherIcon {
     font-size: 30px;
     padding-left: 10px;
+    display: block;
+    margin: 10px;
 }
 
 .uvIndex {
@@ -99,4 +106,8 @@ i {
 
 #cityIcon {
     display: inline-block;
+}
+
+span {
+    margin: 10px;
 }
