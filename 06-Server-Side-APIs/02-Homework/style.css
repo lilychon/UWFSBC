@@ -111,3 +111,9 @@ i {
 span {
     margin: 10px;
 }
+
+#icon {
+    display: inline-block;
+    font-size: 30px;
+    padding-left: 10px;
+}

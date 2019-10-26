@@ -1,10 +1,33 @@
 var APIKey = "166a433c57516f51dfab1f7edaed8413";
-
 var cities = [];
+
+function renderCity() {
+    var citiesString = localStorage.getItem("weatherKey")
+
+    if (citiesString) {
+        cities = JSON.parse(citiesString)
+         $(".cityHistory").empty();
+        for (var i = 0; i < cities.length; i++) {
+            var city = cities[i].split(" ").join("+")
+            var cityHistory = $("<button cityval=" + city + ">" + cities[i] + "</button>");
+            cityHistory.addClass("btn btn-light w-100 cityBtn");
+            $(".cityHistory").append(cityHistory);
+        }
+        $(".cityBtn").on("click", getcity);
+    }
+}
+
+function getcity() {
+    console.log(this)
+    var city = $(this).attr("cityval");
+    console.log(city)
+    displayWeatherInfo(city)
+}
 
 $(".searchBtn").on("click", function (event) {
     event.preventDefault();
-    displayWeatherInfo();
+    var city = $("#cityInput").val();
+    displayWeatherInfo(city);
 })
 
 function buildForecast(response) {
@@ -51,10 +74,11 @@ function buildForecast(response) {
 }
 
 
-function displayWeatherInfo() {
+function displayWeatherInfo(city) {
+    console.log("-->", city)
     $(".fiveDay").empty();
     $(".weatherInfo").empty();
-    var city = $("#cityInput").val();
+
 
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + city + "&appid=" + APIKey;
 
@@ -80,7 +104,7 @@ function displayWeatherInfo() {
                 appendTo: ".weatherInfo"
             })
             $("<div>", {
-                attr: "#icon",
+                id: "icon",
                 appendTo: ".weatherInfo"
             })
             $("<div>", {
@@ -106,34 +130,38 @@ function displayWeatherInfo() {
 
             var weatherIcon = response.list[0].weather[0].main;
 
-            if (weatherIcon === "Clear")
-                $("<div id='icon'>").addClass("fas fa-sun weatherIcon");
-    
-            else if (weatherIcon === "Clouds")
-            $("<div id='icon'>").addClass("fas fa-cloud weatherIcon");
-    
-            else if (weatherIcon === "Snow")
-            $("<div id='icon'>").addClass("fas fa-snowflake weatherIcon");
-    
-            else if (weatherIcon === "Drizzle")
-            $("<div id='icon'>").addClass("fas fa-cloud-rain weatherIcon");
-    
-            else if (weatherIcon === "Rain")
-            $("<div id='icon'>").addClass("fas fa-cloud-showers-heavy weatherIcon");
-        
+            if (weatherIcon === "Clear") {
+                $("#icon").addClass("fas fa-sun");
+            }
+            else if (weatherIcon === "Clouds") {
+                $("#icon").addClass("fas fa-cloud");
+            }
+            else if (weatherIcon === "Snow") {
+                $("#icon").addClass("fas fa-snowflake");
+            }
+            else if (weatherIcon === "Drizzle") {
+                $("#icon").addClass("fas fa-cloud-rain");
+            }
+            else if (weatherIcon === "Rain") {
+                $("#icon").addClass("fas fa-cloud-showers-heavy");
+            }
             // $(".city").html("<h2>" + response.city.name + " (" + currentDate + ")" + "</h2>");
             // $(".temp").html("<p>" + "Temperature: " + response.list[0].main.temp.toFixed(1) + " °F" + "</p>");
             // $(".humidity").html("<p>" + "Humidity: " + response.list[0].main.humidity + "%" + "</p>");
             // $(".wind").html("<p>" + "Wind Speed: " + response.list[0].wind.speed.toFixed(1) + " MPH" + "</p>");
             // $(".uvIndex").html("UV Index: " + "<h4>" + uvResponse.value + "</h4>");
+            if (cities.indexOf(response.city.name) === -1) {
 
-            var cityHistory = $("<button>" + response.city.name + "</button>");
-            cityHistory.addClass("btn btn-light w-100 cityBtn");
-            $(".cityHistory").append(cityHistory);
+                cities.push(response.city.name);
+
+
+                localStorage.setItem("weatherKey", JSON.stringify(cities));
+                renderCity();
+            }
 
         })
     })
 }
 
 $(document).on("click", ".cityBtn", displayWeatherInfo);
-
+renderCity();
