@@ -71,7 +71,7 @@ function generateHTML(data) {
       font-family: 'Cabin', sans-serif;
     }
 
-    main {
+    .main {
       background-color: #E9EDEE;
       height: auto;
       padding-top: 30px;
@@ -222,8 +222,7 @@ function generateHTML(data) {
       </div>
     </div>
   </div>
-  <main>
-    <div class="container">
+    <div class="container main">
       <div class="row">
         <h2 class="links-nav">${data.bio}</h2>
       </div>
@@ -248,7 +247,6 @@ function generateHTML(data) {
         </div>
       </div>
     </div>
-  </main>
   <div class="container col"></div>
 </body>
 

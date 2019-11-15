@@ -32,7 +32,7 @@
     }
 
     .wrapper {
-      background-color: #879CDF;
+      background-color: blue;
       padding-top: 100px;
     }
 
@@ -42,7 +42,7 @@
       font-family: 'Cabin', sans-serif;
     }
 
-    main {
+    .main {
       background-color: #E9EDEE;
       height: auto;
       padding-top: 30px;
@@ -89,8 +89,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      background-color: #FF8374;
-      ;
+      background-color: pink;
       color: white;
       padding: 10px;
       width: 95%;
@@ -103,7 +102,8 @@
       border-radius: 50%;
       object-fit: cover;
       margin-top: -75px;
-      border: 6px solid #FEE24C;
+      border: 6px solid red;
+
       box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
     }
 
@@ -153,10 +153,11 @@
     .card {
       padding: 20px;
       border-radius: 6px;
-      background-color: #FF8374;
+      background-color: pink;
+
       color: white;
       margin: 20px;
-      width: 500px;
+      width: 450px;
     }
 
     .col {
@@ -179,47 +180,46 @@
     }
   </style>
 </head>
+
 <body class="wrapper">
   <div class="container">
     <div class="row">
       <div class="photo-header">
-        <img src="me.jpg">
+        <img src="${data.avatar_url}">
         <h1>Hi!</h1>
-        <h2>My name is ${name}</h1>
-          <h4 class="links-nav">Currently @ ${location}</h4>
+        <h2>My name is ${data.name}</h1>
+          <h4 class="links-nav">Currently @ ${data.location}</h4>
           <p class="nav-link">Google maps</p>
-          <p class="nav-link"><a href="${github}">GitHub</a></p>
-          <p class="nav-link"><a href="${blog}">Blog</a></p>
+          <p class="nav-link"><a href="${data.github}">GitHub</a></p>
+          <p class="nav-link"><a href="${data.blog}">Blog</a></p>
       </div>
     </div>
   </div>
-  <main>
-    <div class="container">
-      <div class="row">
-        <h2 class="links-nav">KEEL MEE</h2>
+  <div class="container main">
+    <div class="row">
+      <h2 class="links-nav">${data.bio}</h2>
+    </div>
+    <div class="row col">
+      <div class="card">
+        <h3>Public Repositories</h3>
+        <p>${data.public_repos}</p>
       </div>
-      <div class="row col">
-        <div class="card">
-          <h3>Public Repositories</h3>
-          <p>${repos}</p>
-        </div>
-        <div class="card">
-          <h3>Followers</h3>
-          <p>${followers}</p>
-        </div>
-      </div>
-      <div class="row col">
-        <div class="card">
-          <h3>Github Stars</h3>
-          <p>${stars}</p>
-        </div>
-        <div class="card">
-          <h3>Following</h3>
-          <p>${following}</p>
-        </div>
+      <div class="card">
+        <h3>Followers</h3>
+        <p>${data.followers}</p>
       </div>
     </div>
-  </main>
+    <div class="row col">
+      <div class="card">
+        <h3>Github Stars</h3>
+        <p>${data.stars}</p>
+      </div>
+      <div class="card">
+        <h3>Following</h3>
+        <p>${data.following}</p>
+      </div>
+    </div>
+  </div>
   <div class="container col"></div>
 </body>
 

@@ -39,37 +39,52 @@ function promptUser() {
       favColor = input.color;
 
       const githubUrl = `https://api.github.com/users/${username}`;
-      const repoUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
       return githubUrl;
-      return repoUrl;
     })
     .then(function (githubUrl) {
       axios.get(githubUrl).then(function (res) {
         res.data.color = favColor;
-        const html = css(res.data);
-        return writeFileAsync("index.html", html);
-        // convertPdf();
-    })
-    .then(function () {
-      console.log("Successfully wrote to index.html");
-    })
-    .catch(function (err) {
-      console.log(err);
+        calculateStars(res.data)
+      })
+        .then(function () {
+          console.log("Successfully wrote to index.html");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
     });
-  });
 }
 
+function calculateStars(info) {
+  const repoUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+  axios.get(repoUrl).then(function (repos) {
+    let stars = 0
+    for (var i = 0; i < repos.data.length; i++) {
+      stars = stars + repos.data[i].stargazers_count
+    }
+    info.stars = stars
+  })
+  createAll(info);
 
-// function convertPdf(htmlPdf, options) {
+}
 
-//   const htmlPdf = readFileAsync('./index.html', 'utf8');
-//   const options = { format: 'Letter' };
+function createAll(info) {
+  const html = css(info);
+  writeFileAsync("index.html", html);
+  convertPdf(html);
+}
 
-//   pdf.create(htmlPdf, options).toFile('./resume.pdf', function(err, res) {
-//     if (err) return console.log(err);
-//     console.log(res);
-//   })
+// function getLocation(lat, lon) {
+
 // }
+
+function convertPdf(htmlPdf) {
+  options = { format: 'Letter' };
+  pdf.create(htmlPdf, options).toFile('./resume.pdf', function (err, res) {
+    if (err) return console.log(err);
+    console.log(res);
+  })
+}
 
 promptUser();
 
